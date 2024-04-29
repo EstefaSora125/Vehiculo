@@ -4,8 +4,8 @@ import exceptions.VelocidadMaximaPermitida;
 import exceptions.VelocidadMayorCero;
 
 public class Motocicleta extends VehiculoBase{
-    public Motocicleta(String marca, int velocidadActual, String estadoMovimiento, String color) {
-        super(marca, velocidadActual, estadoMovimiento, color);
+    public Motocicleta(String marca) {
+        super(marca);
     }
 
     @Override
@@ -16,6 +16,7 @@ public class Motocicleta extends VehiculoBase{
             throw new VelocidadMaximaPermitida();
         }else {
             setVelocidadActual(getVelocidadActual() + velocidad);
+            setEstadoMovimiento("Acelerando");
             System.out.println("La motocicleta está acelerando " + getMarca());
 
         }

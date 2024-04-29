@@ -7,22 +7,16 @@ public class VehiculoBase implements  InterfazVehiculo{
     private String marca;
     private int velocidadActual;
     private String estadoMovimiento;
+    private final int FRENO = 10;
 
-    private String color;
-
-    public VehiculoBase(String marca, int velocidadActual, String estadoMovimiento, String color) {
+    public VehiculoBase(String marca) {
         this.marca = marca;
-        this.velocidadActual = velocidadActual;
-        this.estadoMovimiento = estadoMovimiento;
-        this.color = color;
+        this.velocidadActual = 0;
+        this.estadoMovimiento = "detenido";
     }
 
     public String getMarca() {
         return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
     }
 
     public int getVelocidadActual() {
@@ -38,34 +32,39 @@ public class VehiculoBase implements  InterfazVehiculo{
     }
 
     public void setEstadoMovimiento(String estadoMovimiento) {
+
         this.estadoMovimiento = estadoMovimiento;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 
     @java.lang.Override
     public String arrancar() {
-        return null;
+        setVelocidadActual(getVelocidadActual() + 1);
+        setEstadoMovimiento("Arrancando");
+        return "Arrancando" + marca;
     }
 
     @Override
     public String detener() {
-        return null;
+        setVelocidadActual(0);
+        setEstadoMovimiento("Se ha detenido");
+        return "Detenido";
     }
 
     @java.lang.Override
     public void acelerar(int velocidad) throws VelocidadMayorCero, VelocidadMaximaPermitida {
+
     }
 
     @java.lang.Override
     public String frenar() {
-        return null;
+        if (getVelocidadActual() - FRENO <= 0){
+            detener();
+        } else {
+            setVelocidadActual(getVelocidadActual() - FRENO);
+            setEstadoMovimiento("Frenando");
+        }
+        return "Frenando";
     }
 
     @java.lang.Override
@@ -76,5 +75,13 @@ public class VehiculoBase implements  InterfazVehiculo{
     @java.lang.Override
     public String obtenerEstado() {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "Información " + "\n" +
+                " - Marca: " + marca + "\n" +
+                " - Velocidad: " + velocidadActual + "\n" +
+                " - Estado De Movimiento: " + estadoMovimiento + "\n";
     }
 }
