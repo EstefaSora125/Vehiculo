@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.VelocidadMaximaPermitida;
 import exceptions.VelocidadMayorCero;
 
 public class VehiculoBase implements  InterfazVehiculo{
@@ -59,7 +60,7 @@ public class VehiculoBase implements  InterfazVehiculo{
     }
 
     @java.lang.Override
-    public void acelerar(int velocidad) throws VelocidadMayorCero {
+    public void acelerar(int velocidad) throws VelocidadMayorCero, VelocidadMaximaPermitida {
     }
 
     @java.lang.Override
